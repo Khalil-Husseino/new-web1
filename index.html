@@ -410,7 +410,7 @@
           <button class="choice" data-value="Coffee & talking">☕ <span>Coffee & talking</span></button>
           <button class="choice" data-value="Dinner">🍝 <span>Dinner</span></button>
           <button class="choice" data-value="Movie">🎬 <span>Movie</span></button>
-          <button class="choice" data-value="Something spontaneous">✨ <span>Something spontaneous</span></button>
+          <button class="choice" data-value="Surprise me (You choose)">🙈 <span>Surprise me (You choose)</span></button>
         </div>
         <input type="text" id="customTypeInput" class="date-input" placeholder="Or type any extra idea here... ✍️" autocomplete="off">
       </div>
@@ -482,8 +482,7 @@
       const choices = { type: null, day: null };
 
       // ⚠️ ENTER YOUR WHATSAPP NUMBER HERE (Country code + number, digits only, NO + or spaces)
-      // Example for Oman (+968): "96891234567"
-      const myWhatsAppNumber = "96899817245"; 
+      const myWhatsAppNumber = "96890000000"; 
 
       function validateContinue() {
         if (continueBtn) {
@@ -551,7 +550,6 @@
         yesBtn.addEventListener("click", () => showScreen("options"));
       }
 
-      // Handle custom type input typing
       if (customTypeInput) {
         customTypeInput.addEventListener("input", (e) => {
           const val = e.target.value.trim();
@@ -566,7 +564,6 @@
         });
       }
 
-      // Handle custom day input typing
       if (customDayInput) {
         customDayInput.addEventListener("input", (e) => {
           const val = e.target.value.trim();
@@ -581,7 +578,6 @@
         });
       }
 
-      // Handle preset choice buttons
       document.querySelectorAll(".choices").forEach(group => {
         const groupName = group.dataset.group;
         group.querySelectorAll(".choice").forEach(button => {
@@ -592,7 +588,6 @@
             const val = button.dataset.value;
             choices[groupName] = val;
 
-            // Clear corresponding text input when a preset button is clicked
             if (groupName === 'type' && customTypeInput) {
               customTypeInput.value = "";
             } else if (groupName === 'day' && customDayInput) {
@@ -612,9 +607,9 @@
           if (sumType) sumType.textContent = choices.type;
           if (sumDay) sumDay.textContent = choices.day;
 
-          // Update WhatsApp Link
+          // 🕵️‍♀️ Option 4: The Suspenseful & Cute Vibe
           if (whatsappBtn) {
-            const message = encodeURIComponent(`Hey! Here is what I chose for our date:\n✨ What: ${choices.type}\n📅 When: ${choices.day}`);
+            const message = encodeURIComponent(`Okay, mystery solved… she said YES! 🕵️‍♀️✨\n\nShe put together this little itinerary for us:\n\n🎬 *What:* ${choices.type}\n🗓️ *When:* ${choices.day}\n\nGet your outfit ready. 😉🥂`);
             whatsappBtn.href = `https://api.whatsapp.com/send?phone=${myWhatsAppNumber}&text=${message}`;
           }
 
